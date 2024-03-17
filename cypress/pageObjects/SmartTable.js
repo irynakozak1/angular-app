@@ -1,11 +1,7 @@
-import {useLegacySass} from "@angular-devkit/build-angular/src/utils/environment-options";
-
 export default class SmartTable {
   _url = '/pages/tables/smart-table'
 
   _addButtonSelector = '.nb-plus'
-  _editButtonSelector = '.ng2-smart-row.selected.ng-star-inserted .nb-edit'
-  _editedRowSelector = 'tbody tr:nth-child(1)'
 
   _idInputSelector = 'input[ng-reflect-name="id"]'
   _firstNameInputSelector = 'input[ng-reflect-name="firstName"]'
@@ -13,6 +9,7 @@ export default class SmartTable {
   _userNameInputSelector = 'input[ng-reflect-name="username"]'
   _emailInputSelector = 'input[ng-reflect-name="email"]'
   _ageInputSelector = 'input[ng-reflect-name="age"]'
+
   _checkmarkSelector = '.nb-checkmark'
 
   _idResultSelector = '.ng2-smart-row.selected.ng-star-inserted td:nth-child(2)'
@@ -51,6 +48,14 @@ export default class SmartTable {
     this.userNameResult.should("have.text", userName)
     this.emailResult.should("have.text", email)
     this.ageResult.should("have.text", age)
+  }
+
+  selectEditButton (rowId){
+    return cy.get(`tbody tr:nth-child(${rowId}) .nb-edit`)
+  }
+
+  selectRow (rowId){
+    return cy.get(`tbody tr:nth-child(${rowId})`)
   }
 
   get addButton(){

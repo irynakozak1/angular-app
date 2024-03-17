@@ -7,9 +7,10 @@ describe("Smart Table", ()=>{
     smartTable.navigate()
   })
 
-  it('should edit 1st user (with POM)', () => {
+  it('should edit user under respective rowId (with POM)', () => {
+    const rowId = 4
     const userData = {
-      id: "2",
+      id: "5",
       firstName: "Ira2",
       lastName: "Kozak2",
       userName: "ikozak2",
@@ -17,12 +18,14 @@ describe("Smart Table", ()=>{
       age: "28"
     }
 
-    smartTable.editButton.click()
+    smartTable.selectEditButton(rowId).click()
     smartTable.clearUserData(userData)
     smartTable.fillUserData(userData)
     smartTable.checkmark.click()
 
-    smartTable.editedRow.click()
+    if (rowId === 1) {
+      smartTable.selectRow(rowId).click()
+    }
 
     smartTable.shouldCompareData(userData)
   });
